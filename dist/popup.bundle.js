@@ -1,0 +1,2 @@
+document.getElementById("saveApiKey").addEventListener("click",(function(){var e=document.getElementById("apiKey").value;chrome.storage.local.set({apiKey:e},(function(){document.getElementById("message").innerText="API Key saved!"}))})),document.getElementById("startButton").addEventListener("click",(function(){chrome.tabs.query({active:!0,currentWindow:!0},(function(e){chrome.tabs.sendMessage(e[0].id,{action:"start"})}))}));
+//# sourceMappingURL=popup.bundle.js.map
