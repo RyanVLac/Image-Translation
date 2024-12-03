@@ -1,7 +1,6 @@
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.action === 'startOffscreen' && message.imageUrl) {
     await ensureOffscreenDocument();
-    // Forward the message to the offscreen document
     chrome.runtime.sendMessage(message);
   }
   return true;

@@ -11,12 +11,11 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js', // Each entry will have its own bundle
+    filename: '[name].bundle.js', 
   },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        // Copy Tesseract.js worker files
         {
           from: 'node_modules/tesseract.js/dist/worker.min.js',
           to: 'tesseract/worker.min.js',

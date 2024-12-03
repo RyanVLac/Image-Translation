@@ -5,22 +5,19 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     try {
       console.log(`Processing image: ${message.imageUrl}`);
 
-      // Set up Tesseract options with local paths
       const tesseractOptions = {
         logger: m => console.log(m),
         workerPath: chrome.runtime.getURL('tesseract/worker.min.js'),
         corePath: chrome.runtime.getURL('tesseract/tesseract-core.wasm.js'),
       };
 
-      // Perform OCR using Tesseract
       Tesseract.recognize(
         message.imageUrl,
-        'eng', // Specify language(s) here
+        'eng', 
         tesseractOptions
       )
         .then(({ data: { text } }) => {
           console.log('Extracted text:', text);
-          // Send the text back to the background script or content script
           chrome.runtime.sendMessage({ action: 'displayText', text });
         })
         .catch(err => {
